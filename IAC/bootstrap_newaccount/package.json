@@ -1,0 +1,12 @@
+{
+    "name": "bootstrap-newaccount",
+    "version": "0.0.1",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18",
+        "typescript": "^5.9.3",
+        "@aws-sdk/client-sts": "^3.1057.0",
+        "@pulumi/aws": "^7.0.0",
+        "@pulumi/pulumi": "^3.261.0"
+    }
+}
