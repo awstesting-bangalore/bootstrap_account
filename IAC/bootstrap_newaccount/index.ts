@@ -36,7 +36,6 @@ export class BootstrapNewAccount extends pulumi.ComponentResource {
     public readonly accountAlias: pulumi.Output<string>;
     public readonly actionsTaken: pulumi.Output<string[]>;
     public readonly warnings: pulumi.Output<string[]>;
-    public readonly dryRun: pulumi.Output<boolean>;
 
     constructor(
         name: string,
@@ -44,7 +43,7 @@ export class BootstrapNewAccount extends pulumi.ComponentResource {
         opts?: pulumi.ComponentResourceOptions,
     ) {
         super(
-            "aenetworks:aws:BootstrapNewAccount",
+            "agg:aws:BootstrapNewAccount",
             name,
             {},
             opts,
@@ -61,13 +60,6 @@ export class BootstrapNewAccount extends pulumi.ComponentResource {
         this.accountAlias =
             pulumi.output(
                 args.accountAlias ?? "",
-            );
-
-        // Native Pulumi preview state only. This does NOT change the
-        // resource graph.
-        this.dryRun =
-            pulumi.output(
-                pulumi.runtime.isDryRun(),
             );
 
         const actionsTaken:
@@ -90,7 +82,7 @@ export class BootstrapNewAccount extends pulumi.ComponentResource {
             );
 
             actionsTaken.push(
-                pulumi.interpolate`Created/managed Account Alias '${args.accountAlias}'`,
+                pulumi.interpolate`Created/Managed Account Alias '${args.accountAlias}'`,
             );
         } else {
             warnings.push(
@@ -130,7 +122,7 @@ export class BootstrapNewAccount extends pulumi.ComponentResource {
 
         actionsTaken.push(
             pulumi.output(
-                "Created/managed Account Password Policy",
+                "Created/Managed Account Password Policy",
             ),
         );
 
@@ -151,8 +143,6 @@ export class BootstrapNewAccount extends pulumi.ComponentResource {
                 this.actionsTaken,
             warnings:
                 this.warnings,
-            dryRun:
-                this.dryRun,
         });
     }
 }
